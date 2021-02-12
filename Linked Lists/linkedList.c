@@ -8,24 +8,24 @@ typedef struct Node
     struct Node *link;
 }Node;
 
-int isListEmpty(Node *headRef)
+int isListEmpty(Node *head)
 {
-    if(headRef == NULL)
+    if(head == NULL)
         return 1;
     else 
         return 0;
 }
 
-void printList(Node *headRef)
+void printList(Node *head)
 {
-    if(isListEmpty(headRef))
+    if(isListEmpty(head))
     {
         printf("Underflow !\n");
         return;
     } 
 
     Node *curr;
-    curr = headRef;
+    curr = head;
     while(curr != NULL)
     {
         printf("%d ->", curr -> info);
