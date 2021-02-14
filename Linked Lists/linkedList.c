@@ -165,8 +165,7 @@ void deleteAtEnd(Node **headRef)
         temp = temp -> link;
     }
 
-    prev -> link = temp -> link;
-    temp -> link = NULL;
+    prev -> link = NULL;
     free(temp);
     printf("Element Deleted at End. \n");
 
