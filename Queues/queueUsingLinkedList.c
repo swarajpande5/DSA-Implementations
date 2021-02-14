@@ -27,8 +27,7 @@ void insert(int value)
         {
             front = in;
             rear = in;
-            front -> link = NULL;
-            rear -> link = NULL;
+            in -> link = NULL;
         }
         else 
         {
@@ -54,6 +53,7 @@ void delete()
     {
         temp = front;
         front = front -> link;
+        temp -> link = NULL;
 
         free(temp);
     }
