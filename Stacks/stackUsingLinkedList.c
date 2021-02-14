@@ -2,16 +2,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct StackNode 
+typedef struct StackNode 
 {
     int info;
 
     struct StackNode *link;
-};
+}StackNode;
 
-void push(struct StackNode **topRef, int value)
+void push(StackNode **topRef, int value)
 {
-    struct StackNode *in = (struct StackNode *)malloc(sizeof(struct StackNode));
+    StackNode *in = (StackNode *)malloc(sizeof(StackNode));
 
     if(in == NULL)
     {
@@ -19,24 +19,26 @@ void push(struct StackNode **topRef, int value)
         return;
     }
 
+    in -> info = value;
     if(*topRef == NULL)
     {
-        in -> info = value;
         in -> link = NULL;
 
         *topRef = in;
     }
     else 
     {
-        in -> info = value;
         in -> link = *topRef;
         *topRef = in;
     }
+
+    in = NULL;
+    free(in);
 }
 
-void pop(struct StackNode **topRef)
+void pop(StackNode **topRef)
 {
-    struct StackNode *temp;
+    StackNode *temp;
     
     if(*topRef == NULL)
     {
@@ -46,23 +48,24 @@ void pop(struct StackNode **topRef)
     {
         temp = *topRef;
         *topRef = (*topRef) -> link;
+        temp -> link = NULL;
 
         free(temp);
     }
 }
 
-void display(struct StackNode **topRef)
+void display(StackNode *top)
 {
-    struct StackNode *curr;
+    StackNode *curr;
     
-    if(*topRef == NULL)
+    if(top == NULL)
     {
         printf("Stack Underflow ! \n");
     }
     else 
     {
         printf("TOP ");
-        curr = *topRef;
+        curr = top;
 
         while(curr != NULL)
         {
@@ -70,10 +73,13 @@ void display(struct StackNode **topRef)
             curr = curr -> link;
         }
         printf("\n");
+        
+        curr = NULL;
+        free(curr);
     }
 }
 
-int peek(struct StackNode *top)
+int peek(StackNode *top)
 {
     if(top == NULL)
     {
@@ -89,7 +95,7 @@ int peek(struct StackNode *top)
 
 void main()
 {
-    struct StackNode *top = NULL;
+    StackNode *top = NULL;
 
     push(&top, 20);
     push(&top, 10);
@@ -97,13 +103,13 @@ void main()
     push(&top, 50);
     push(&top, 22);
 
-    display(&top);
+    display(top);
 
     pop(&top);
     pop(&top);
     pop(&top);
 
-    display(&top);
+    display(top);
 
     pop(&top);
     pop(&top);
