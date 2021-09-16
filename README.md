@@ -1,6 +1,6 @@
 # Data Structures and Algorithms Implementations
 
-This repository contains C/C++ programs covering Data Structures and Algorithms.
+This repository contains C/C++ programs covering Data Structures and Algorithms (some famous questions too!) 
 
 
 ### Contributing
