@@ -45,7 +45,7 @@ int main()
     cout << "Enter nodes and edges: ";
     cin >> nodes >> edges;
 
-    // (Adjacency Matrix with weights) 2-D vector containing node-weight pairs for an undireted graph
+    // (Adjacency Matrix with weights) 2-D vector containing node-weight pairs for an undirected graph
     Graph graph(nodes + 1);
 
     cout << "Enter edges with weights: \n";
