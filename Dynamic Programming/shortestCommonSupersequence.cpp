@@ -1,4 +1,4 @@
-// Shortest Common Supersequence (LCS Variation) :
+// Shortest Common Supersequence (LCS Variation) : https://practice.geeksforgeeks.org/problems/shortest-common-supersequence0322/1
 #include <bits/stdc++.h>
 using namespace std;
 
