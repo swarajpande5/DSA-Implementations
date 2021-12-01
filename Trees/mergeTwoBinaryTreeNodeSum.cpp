@@ -1,4 +1,4 @@
-// Merge two binary trees by doing node sum : 
+// Merge two binary trees by doing node sum : https://www.geeksforgeeks.org/merge-two-binary-trees-node-sum/
 #include <bits/stdc++.h>
 using namespace std;
 
