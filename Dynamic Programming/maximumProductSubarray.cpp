@@ -18,7 +18,7 @@ int maxSubarrayProduct(int arr[], int n)
         maxProd = max(maxProd, currMaxProd);
     }
 
-    return currMaxProd;
+    return maxProd;
 }
 
 int main()
