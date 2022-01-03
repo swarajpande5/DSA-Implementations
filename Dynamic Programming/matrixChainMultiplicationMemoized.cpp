@@ -1,4 +1,4 @@
-// Matrix Chain Multiplication (Memorized)
+// Matrix Chain Multiplication (Memoized)
 #include <bits/stdc++.h>
 using namespace std;
 

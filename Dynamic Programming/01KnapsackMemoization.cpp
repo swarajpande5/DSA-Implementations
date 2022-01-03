@@ -1,4 +1,4 @@
-// 0-1 Knapsack problem using memorization 
+// 0-1 Knapsack problem using memoization 
 #include <bits/stdc++.h>
 using namespace std;
 
