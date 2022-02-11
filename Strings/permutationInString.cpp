@@ -67,3 +67,40 @@ public:
         return false;
     }
 };
+
+class Solution3
+{
+public:
+    bool checkInclusion(string s1, string s2)
+    {
+        if(s1.size() > s2.size())
+            return false;
+        
+        vector<int> s1Freq(26, 0), s2Freq(26, 0);
+
+        int i = 0;
+        
+        // First Window
+        for(; i < s1.size(); i++)
+        {
+            s1Freq[s1[i] - 'a']++;
+            s2Freq[s2[i] - 'a']++;
+        }
+
+        if(s1Freq == s2Freq)
+            return true;
+        
+        // Searching the remaining windows
+        for(; i < s2.size(); i++)
+        {
+            // Removing the first character of current window and adding the current character
+            s2Freq[s2[i - s1.size()] - 'a']--;
+            s2Freq[s2[i] - 'a']++;
+
+            if(s1Freq == s2Freq)
+                return true;
+        }
+
+        return false;
+    }
+};
