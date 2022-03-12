@@ -80,6 +80,41 @@ bool isBST(Node *node)
     return isBSTUtil(node, INT_MIN, INT_MAX);
 }
 
+// Leetcode: https://leetcode.com/problems/validate-binary-search-tree/
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution 
+{
+public:
+    
+    bool isValidBSTUtility(TreeNode *node, long long minKey, long long maxKey)
+    {
+        if(node == NULL)
+            return true;
+        
+        if(node -> val <= minKey || node -> val >= maxKey)
+            return false;
+        
+        return  isValidBSTUtility(node -> left, minKey, node -> val) &&
+                isValidBSTUtility(node -> right, node -> val, maxKey);
+    }
+    
+    bool isValidBST(TreeNode* root) 
+    {
+        return isValidBSTUtility(root, LLONG_MIN, LLONG_MAX);    
+    }
+};
+
+
 int main()
 {
     Node *root = NULL;
