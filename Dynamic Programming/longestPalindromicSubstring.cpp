@@ -1,14 +1,14 @@
 // Longest palindromic substring:
 
 /*
-P(i, j) == P(i+1, j-1) && s[i] == s[j];
+    P(i, j) == P(i+1, j-1) && s[i] == s[j];
 
-Base cases :
-One character: 
-P(i, i) = true;
+    Base cases :
+    One character: 
+    P(i, i) = true;
 
-Two characters:
-P(i, i+1) = s[i] == s[i+1]
+    Two characters:
+    P(i, i+1) = s[i] == s[i+1]
 
 */
 class Solution
@@ -42,7 +42,7 @@ public:
                     // If it is of two character OR if its susbtring is palindrome.
                     if (j - i == 1 || dp[i + 1][j - 1])
                     {
-                        // Then it will also a palindrome substring
+                        // Then it will also be a palindrome substring
                         dp[i][j] = true;
 
                         // Check for Longest Palindrome substring
