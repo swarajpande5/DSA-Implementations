@@ -22,6 +22,27 @@ public:
 };
 */
 
+class RecursiveSolution
+{
+public:
+    bool util(int idx, vector<int> &nums)
+    {
+        if(idx == nums.size() - 1)
+            return true;
+        
+        for(int i = 1; i <= nums[idx]; i++)
+            if(util(idx + 1, nums))
+                return true;
+        
+        return false;
+    }
+
+    bool canJump(vector<int> &nums)
+    {
+        return util(0, nums);
+    }
+};
+
 class Solution
 {
 public:
