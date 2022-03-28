@@ -16,20 +16,31 @@ public:
             if(nums[mid] == target)
                 return mid;
             
-            if(nums[low] <= nums[mid])
+            // There exists rotation, the middle element is in the left part of the pivot
+            if(nums[mid] > nums[high])
             {
-                if(target <= nums[mid] && target >= nums[low])
+                if(target < nums[mid] && target >= nums[low])
                     high = mid - 1;
-                else
+                else 
                     low = mid + 1;
             }
-            
-            else 
+
+            // There exists rotation, the middle element is in the right parth of the pivot
+            else if(nums[mid] < nums[low])
             {
-                if(target >= nums[mid] && target <= nums[high])
+                if(target > nums[mid] && target <= nums[high])
                     low = mid + 1;
                 else 
                     high = mid - 1;
+            }
+
+            // There is no rotation, just like normal binary search
+            else 
+            {
+                if(target < nums[mid])
+                    high = mid - 1;
+                else 
+                    low = mid + 1;
             }
         }
         
