@@ -21,15 +21,15 @@ class Properties
 {
 public:
     bool isBST;     // If current tree is BST or not
-    int leftMin;    // Minimum value to the left of the current tree
-    int rightMax;   // Maximum value to the right of the current tree
+    int leftMax;    // Maximum value to the left of the current tree
+    int rightMin;   // Minimum value to the right of the current tree
     int sum;        // Sum of all nodes including the current node
     
     Properties()
     {
         isBST = true;
-        leftMin = INT_MAX;
-        rightMax = INT_MIN;
+        leftMax = INT_MIN;
+        rightMin = INT_MAX;
         sum = 0;
     }
 };
@@ -37,7 +37,7 @@ public:
 class Solution 
 {
 public:
- 
+
     Properties calculateSum(TreeNode* root)
     {
         if(root == NULL)
@@ -48,15 +48,15 @@ public:
         Properties currRight = calculateSum(root -> right);     // Recursive call for right sub-tree
         
         // If sub-tree including the current node is BST,
-        // then we calculate 'rightMax', 'leftMin' and 'maxSum' for the current node.
+        // then we calculate 'leftMax', 'rightMin' and 'maxSum' for the current node.
         if( currLeft.isBST && 
             currRight.isBST && 
-            root -> val > currLeft.rightMax &&
-            root -> val < currRight.leftMin )
+            root -> val > currLeft.leftMax &&
+            root -> val < currRight.rightMin )
         {
             curr.isBST = true;
-            curr.leftMin = min({ root -> val, currLeft.leftMin, currRight.leftMin });
-            curr.rightMax = max({ root -> val, currLeft.rightMax, currRight.rightMax });
+            curr.leftMax = max({ root -> val, currLeft.leftMax, currRight.leftMax });
+            curr.rightMin = min({ root -> val, currLeft.rightMin, currRight.rightMin });
             curr.sum = root -> val + currLeft.sum + currRight.sum;
         }
         
