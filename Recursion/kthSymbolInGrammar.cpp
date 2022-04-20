@@ -12,6 +12,6 @@ public:
         if (k <= len)
             return kthGrammar(n - 1, k);
         
-        return not kthGrammar(n - 1, k - len);
+        return !kthGrammar(n - 1, k - len);
     }
 };
