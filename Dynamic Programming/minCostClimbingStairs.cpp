@@ -13,7 +13,7 @@ public:
         if(n == 0 || n == 1)
             return cost[n];
 
-        return cost[n] + min(minCost(cost, n - 1), minCost(n - 2))
+        return cost[n] + min(minCost(cost, n - 1), minCost(cost, n - 2))
     }
 
     int minCostClimbingStairs(vector<int> &cost)
