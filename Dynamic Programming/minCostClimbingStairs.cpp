@@ -1,4 +1,5 @@
 // Min cost climbing stairs: https://leetcode.com/problems/min-cost-climbing-stairs/
+// https://leetcode.com/problems/min-cost-climbing-stairs/discuss/476388/4-ways-or-Step-by-step-from-Recursion-greater-top-down-DP-greater-bottom-up-DP-greater-fine-tuning
 
 class RecursiveSolution
 {
@@ -23,7 +24,7 @@ public:
 };
 
 // Bottom up DP
-class Solution
+class BottomUpSolution
 {
 public:
     int minCostClimbingStairs(vector<int> &cost)
@@ -32,5 +33,31 @@ public:
             cost[i] += min(cost[i - 1], cost[i - 2]);
 
         return min(cost[cost.size() - 1], cost[cost.size() - 2]);
+    }
+};
+
+// Space Optimized Bottom up DP 
+class Solution
+{
+public:
+    int minCostClimbingStairs(vector<int> &cost)
+    {
+        int n = cost.size();
+
+        int first = cost[0];
+        int second = cost[1];
+
+        if(n <= 2)
+            return min(first, second);
+
+        for(int i = 2; i < n; i++)
+        {
+            int curr = cost[i] + min(first, second);
+            
+            first = second;
+            second = curr;
+        }
+
+        return min(first, second);
     }
 };
