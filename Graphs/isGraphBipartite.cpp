@@ -46,3 +46,39 @@ public:
         return true;
     }
 };
+
+// DFS Solution
+class Solution 
+{
+public:
+    
+    bool dfs(vector<vector<int>> &graph, vector<int> &colors, int node, int color)
+    {
+        // Cannot assign
+        if(colors[node] == !color)
+            return false;
+        
+        // Already correctly assigned
+        if(colors[node] == color)
+            return true; 
+    
+        colors[node] = color; 
+        for(auto nbr: graph[node])
+            if(!dfs(graph, colors, nbr, !color)) 
+                return false; 
+    
+        return true;
+    }
+    
+    bool isBipartite(vector<vector<int>>& graph) 
+    {
+        // Two colors are 0 and 1 (-1 means unassigned)
+        vector<int> colors(graph.size(), -1);
+        
+        for(int i = 0; i < graph.size(); i++)
+            if(colors[i] == -1 && !dfs(graph, colors, i, 0))
+                return false; 
+    
+        return true;
+    }
+};
