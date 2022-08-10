@@ -50,4 +50,4 @@ public:
 
         return newHeadPtr -> next;
     }
-}
+};
