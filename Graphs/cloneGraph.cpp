@@ -75,17 +75,101 @@ public:
     {
         if (!node)
             return NULL;
-        
+
         // If node not visited
-        if(copy.find(node) == copy.end())
+        if (copy.find(node) == copy.end())
         {
-            copy[node] = new Node(node -> val);
+            copy[node] = new Node(node->val);
 
             // Looking for all neighbours of node
-            for(Node *n: node -> neighbors)
-                copy[node] -> neighbors.push_back(cloneGraph(neighbor));    // Recusively calling and appending the obtained neighbor nodes
+            for (Node *n : node->neighbors)
+                copy[node]->neighbors.push_back(cloneGraph(neighbor)); // Recusively calling and appending the obtained neighbor nodes
 
             return copy[node];
         }
+    }
+};
+
+// GFG Clone Graph solution by using a map: https://practice.geeksforgeeks.org/problems/clone-graph/1
+
+// struct Node {
+//     int val;
+//     vector<Node*> neighbors;
+//     Node() {
+//         val = 0;
+//         neighbors = vector<Node*>();
+//     }
+//     Node(int _val) {
+//         val = _val;
+//         neighbors = vector<Node*>();
+//     }
+//     Node(int _val, vector<Node*> _neighbors) {
+//         val = _val;
+//         neighbors = _neighbors;
+//     }
+// };
+
+// DFS Solution
+class Solution
+{
+public:
+    Node *cloneGraph(Node *node)
+    {
+        if (!node)
+        {
+            return NULL;
+        }
+        if (copies.find(node) == copies.end())
+        {
+            copies[node] = new Node(node->val, {});
+            for (Node *neighbor : node->neighbors)
+            {
+                copies[node]->neighbors.push_back(cloneGraph(neighbor));
+            }
+        }
+        return copies[node];
+    }
+
+private:
+    unordered_map<Node *, Node *> copies;
+};
+
+// BFS Solution
+class Solution 
+{
+public:
+    Node* cloneGraph(Node* node) 
+    {
+        unordered_map<Node *, Node *> mp;
+        queue<Node *> q; 
+        
+        q.push(node); 
+        
+        Node *copy = new Node(node -> val);
+        mp[node] = copy; 
+        
+        while(!q.empty())
+        {
+            Node *curr = q.front(); 
+            q.pop();
+            
+            for(auto nbr: curr -> neighbors)
+            {
+                // Check if this node is already been copied
+                if(mp[nbr] == NULL)
+                {
+                    // If not created then created a new Node and 
+                    // put into the hashmap
+                    copy = new Node(nbr -> val);
+                    mp[nbr] = copy;
+                    q.push(nbr);
+                }
+                
+                // Add these neighbours to the cloned graph node 
+                mp[curr] -> neighbors.push_back(mp[nbr]);
+            }
+        }
+        
+        return mp[node];
     }
 };
