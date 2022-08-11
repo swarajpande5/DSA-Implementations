@@ -86,3 +86,40 @@ int main()
 
     return 0;
 }
+
+// Striver's method 
+vector<int> bfsZeroOne(int n, vector<pair<int, int>> adj[] int source)
+{
+    deque<pair<int, int>> dq; 
+    vector<int> dist(n, 0);
+
+    for(int i = 0; i < n; i++)
+        dist[i] = INT_MAX; 
+    
+    dist[source] = 0; 
+    dq.push_front({source, 0}); 
+
+    while(!dq.empty())
+    {
+        int currNode = dq.front().first; 
+        int currDist = dq.front().second; 
+        dq.pop(); 
+
+        for(auto nbr: adj[node])
+        {
+            int adjNode = nbr.first; 
+            int wt = nbr.second; 
+
+            if(currDist + wt < dis[adjNode])
+            {                
+                dist[adjNode] = currDist + wt;
+                if(wt == 1)
+                    dq.push_back({adjNode, currDist + wt});
+                else 
+                    dq.push_front({adjNode, currDist + wt});
+            }
+        }
+    }
+
+    return dist;
+}
