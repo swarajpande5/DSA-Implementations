@@ -1,4 +1,4 @@
-// Number of islands 2 (LC Premium):  https://www.lintcode.com/problem/434/
+// Number of islands 2 (LC Premium): https://www.lintcode.com/problem/434/
 
 /**
  * Definition for a point.
