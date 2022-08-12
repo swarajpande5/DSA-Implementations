@@ -1,4 +1,4 @@
-// The maze: https://www.lintcode.com/problem/787/
+// The maze (LC Premium): https://www.lintcode.com/problem/787/
 
 class Solution
 {
