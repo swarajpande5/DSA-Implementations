@@ -18,12 +18,12 @@ void dfs(int node, int parent, vector<int> &vis, vector<int> &tin, vector<int> &
             dfs(it, node, vis, tin, low, timer, adj); 
             low[node] = min(low[node], low[it]); 
             
-            if(low[it] > tin[node]) 
+            if(low[it] > tin[node])                 // then it is a bridge
                 cout << node << " " << it << endl;
             
         } 
         else 
-            low[node] = min(low[node], tin[it]); 
+            low[node] = min(low[node], tin[it]);    // or it can be min(low[node], low[it])
         
     }
 }
