@@ -53,3 +53,57 @@ int main()
 
     return 0;
 }
+
+// Super Egg Drop: https://leetcode.com/problems/super-egg-drop/
+// Most Optimal Solution 
+class Solution 
+{
+public:
+    
+    static const int maxEggs = 101; 
+    static const int maxFloors = 10001;
+    
+    int dp[maxEggs][maxFloors];
+    
+    int solve(int eggs, int floors)
+    {
+        if(dp[eggs][floors] != -1)
+            return dp[eggs][floors]; 
+        
+        // Base condition 
+        if(eggs == 1 || floors == 0 || floors == 1)
+        {
+            dp[eggs][floors] = floors;
+            return dp[eggs][floors];
+        }
+        
+        // Binary Search + DP Approach
+        int mn = INT_MAX;
+        int low = 1;
+        int high = floors; 
+        
+        while(low <= high)
+        {
+            int mid = low + (high - low) / 2; 
+            
+            int eggBreaks = solve(eggs - 1, mid - 1); 
+            int eggNotBreaks = solve(eggs, floors - mid); 
+            
+            int temp = 1 + max(eggBreaks, eggNotBreaks);
+            mn = min(mn, temp); 
+            
+            if(eggBreaks > eggNotBreaks)
+                high = mid - 1; 
+            else 
+                low = mid + 1;
+        }
+        
+        return dp[eggs][floors] = mn;
+    }
+    
+    int superEggDrop(int k, int n) 
+    {
+        memset(dp, -1, sizeof dp); 
+        return solve(k, n);
+    }
+};
