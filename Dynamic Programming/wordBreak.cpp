@@ -94,3 +94,39 @@ public:
         return dp[0];
     }
 };
+
+// BFS Approach 
+class Solution {
+public:
+    bool wordBreak(string s, vector<string>& wordDict) 
+    {    
+        queue<string> q; 
+        q.push(s); 
+        
+        set<string> visited; 
+        
+        while(!q.empty())
+        {
+            s = q.front(); 
+            q.pop(); 
+            
+            for(string word: wordDict)
+            {
+                if(s.rfind(word, 0) == 0)       // If string s starts with word as prefix
+                {
+                    string newString = s.substr(word.size()); 
+                    
+                    if(newString == "")
+                        return true; 
+                    if(!visited.count(newString))
+                    {
+                        q.push(newString); 
+                        visited.insert(newString);
+                    }
+                }
+            }
+        }
+        
+        return false;
+    }
+};
