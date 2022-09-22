@@ -1,3 +1,4 @@
+// Maximum XOR with an element from array: https://leetcode.com/problems/maximum-xor-with-an-element-from-array/
 // Max XOR queries: https://www.codingninjas.com/codestudio/problems/max-xor-queries_1382020
 
 struct Node 
