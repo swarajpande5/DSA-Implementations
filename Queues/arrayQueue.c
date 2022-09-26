@@ -1,7 +1,7 @@
 // Queue Implementation using Array
 #include <stdio.h>
 
-#define SIZE 100
+#define SIZE 1000
 
 int front = -1;
 int rear = -1;
